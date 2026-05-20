@@ -1,0 +1,17 @@
+.admin-container { padding-top: 2rem; padding-bottom: 3rem; animation: slideUp 0.4s; }
+.admin-container h1 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.admin-panel { padding: 0; overflow: hidden; }
+.admin-panel th { padding: 1rem 1.2rem; background: rgba(255,255,255,0.02); }
+.admin-panel td { padding: 0.8rem 1.2rem; }
+
+.reports-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 2rem; }
+.report-card { text-align: center; padding: 2rem 1rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); }
+.report-value { display: block; font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.3rem; }
+.report-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+@media (max-width: 768px) {
+  .reports-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .reports-grid { grid-template-columns: 1fr; }
+}
