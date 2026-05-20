@@ -1,0 +1,48 @@
+.home-container { padding-top: 2rem; padding-bottom: 3rem; animation: slideUp 0.5s; }
+.hero-section { text-align: center; padding: 3rem 0 2.5rem; display: flex; flex-direction: column; align-items: center; }
+.hero-title { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+.hero-subtitle { color: var(--text-secondary); font-size: 1.15rem; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.action-btn { padding: 0.8rem 1.8rem; font-size: 1rem; font-weight: 600; }
+
+.dashboard-section { display: grid; grid-template-columns: 1fr 360px; gap: 1.5rem; margin-top: 1rem; }
+.dashboard-card { padding: 1.5rem; }
+.main-card { min-height: 300px; }
+
+.daily-challenge { background: rgba(255,107,107,0.06); border: 1px solid rgba(255,107,107,0.15); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; }
+.daily-header { font-weight: 600; font-size: 1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+.daily-body { display: flex; gap: 1rem; align-items: center; }
+.daily-image { width: 140px; height: 90px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.daily-image img { width: 100%; height: 100%; object-fit: cover; }
+.daily-info h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+.daily-info p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.6rem; }
+
+.quiz-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.quiz-item { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 1rem; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+.quiz-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+.quiz-item-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.quiz-item-title { font-weight: 600; font-size: 1rem; }
+.quiz-item-meta { font-size: 0.82rem; color: var(--text-secondary); }
+.quiz-tags { display: flex; gap: 0.4rem; margin-top: 0.3rem; }
+.tag { font-size: 0.7rem; padding: 0.15em 0.5em; border-radius: 4px; background: rgba(36,181,255,0.1); color: var(--accent); border: 1px solid rgba(36,181,255,0.2); }
+
+.card-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.card-header h2 { font-size: 1.1rem; }
+.player-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.player-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.5rem 0; }
+.rank { font-weight: 700; font-size: 1.1rem; min-width: 28px; text-align: center; }
+.player-avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+.player-name { font-weight: 500; font-size: 0.95rem; flex: 1; }
+.player-score { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .dashboard-section { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2.5rem; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 2rem; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .action-btn { width: 100%; max-width: 280px; }
+  .daily-body { flex-direction: column; }
+  .daily-image { width: 100%; height: 120px; }
+}
