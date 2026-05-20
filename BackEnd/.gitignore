@@ -1,0 +1,8 @@
+# Ignore PDF and TXT files
+*.pdf
+*.txt
+
+# Ignore BackEnd node_modules and sqlite database
+BackEnd/node_modules/
+BackEnd/database.sqlite
+BackEnd/package-lock.json
