@@ -7,7 +7,7 @@ const rateLimit = require('express-rate-limit');
 const path = require('path');
 const { initDb } = require('./config/db');
 
-// Load environment variables
+// Load environment variable
 require('dotenv').config();
 
 const app = express();
