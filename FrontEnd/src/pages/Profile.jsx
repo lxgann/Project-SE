@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSnackbar } from '../context/SnackbarContext';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 const API = 'http://localhost:5000/api';
@@ -38,6 +39,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container container">
+      <Link to="/" className="back-btn">← {t('common.goBack')}</Link>
       <div className="profile-grid">
         <div className="glass-panel profile-info-card">
           <div className="profile-avatar-section">

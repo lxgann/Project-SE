@@ -13,7 +13,9 @@ const Upload = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [title, setTitle] = useState('');
+  const [titleEn, setTitleEn] = useState('');
   const [description, setDescription] = useState('');
+  const [descriptionEn, setDescriptionEn] = useState('');
   const [categoryTags, setCategoryTags] = useState('');
   const [timePerQuestion, setTimePerQuestion] = useState(30);
   const [numQuestions, setNumQuestions] = useState(5);
@@ -136,8 +138,13 @@ const Upload = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({
-          title, description, category_tags: categoryTags,
-          time_limit: timePerQuestion, questions: questionsWithImage
+          title, 
+          title_en: titleEn, 
+          description, 
+          description_en: descriptionEn, 
+          category_tags: categoryTags,
+          time_limit: timePerQuestion, 
+          questions: questionsWithImage
         })
       });
       const data = await res.json();
@@ -165,6 +172,7 @@ const Upload = () => {
 
   return (
     <div className="upload-container container">
+      <Link to="/" className="back-btn">← {t('common.goBack')}</Link>
       <h1 className="upload-title">{t('upload.title')}</h1>
 
       <div className="wizard-steps">
@@ -180,6 +188,34 @@ const Upload = () => {
         {step === 1 && (
           <div className="step-content">
             <h2>{t('upload.step1')}: {t('upload.gameImage')} & Document</h2>
+
+            <div className="glass-panel upload-guidelines" style={{ padding: '1.5rem', marginBottom: '2.5rem', borderRadius: '12px', borderLeft: '4px solid var(--accent)', background: 'rgba(255, 255, 255, 0.02)', textAlign: 'left' }}>
+              <h4 style={{ color: 'var(--accent)', marginBottom: '0.75rem', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700' }}>
+                📋 Ketentuan Unggah Kuis / Quiz Upload Guidelines
+              </h4>
+              <ul style={{ paddingLeft: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: '0 0 1.25rem 0' }}>
+                <li><strong>Format File:</strong> Gunakan file <strong>.txt</strong> dengan format khusus di bawah — 100% tanpa AI, langsung di-parse oleh server.</li>
+                <li><strong>Jumlah Pertanyaan:</strong> Minimal <strong>3 pertanyaan</strong> (disarankan 5 atau lebih).</li>
+                <li><strong>Opsi Pilihan:</strong> Setiap pertanyaan wajib punya <strong>4 pilihan (A, B, C, D)</strong> dan kunci jawaban.</li>
+                <li><strong>Dukungan 2 Bahasa:</strong> Tambahkan baris <code style={{background:'rgba(255,255,255,0.08)',padding:'1px 6px',borderRadius:'4px',fontFamily:'monospace'}}>Question_EN:</code>, <code style={{background:'rgba(255,255,255,0.08)',padding:'1px 6px',borderRadius:'4px',fontFamily:'monospace'}}>A_EN:</code> dst. untuk versi Inggris. Kalau tidak ada, otomatis pakai versi Indonesia.
+                </li>
+              </ul>
+              <div style={{ background: 'rgba(0,0,0,0.35)', borderRadius: '10px', padding: '1rem 1.25rem', fontFamily: 'monospace', fontSize: '0.8rem', color: '#a3e635', lineHeight: '1.7', overflowX: 'auto' }}>
+                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', marginBottom: '0.5rem' }}>📄 Contoh format file .txt:</div>
+                <div>Question: Siapa pencipta Minecraft?</div>
+                <div>Question_EN: Who created Minecraft?</div>
+                <div>A: Markus Persson (Notch)</div>
+                <div>A_EN: Markus Persson (Notch)</div>
+                <div>B: Gabe Newell</div>
+                <div>B_EN: Gabe Newell</div>
+                <div>C: Todd Howard</div>
+                <div>C_EN: Todd Howard</div>
+                <div>D: Steve Jobs</div>
+                <div>D_EN: Steve Jobs</div>
+                <div>Answer: A</div>
+                <div style={{ marginTop: '0.5rem', color: 'rgba(255,255,255,0.35)' }}># (baris kosong antara pertanyaan)</div>
+              </div>
+            </div>
 
             <div className="upload-section">
               <h3>{t('upload.gameImage')}</h3>
@@ -218,15 +254,24 @@ const Upload = () => {
 
         {step === 2 && (
           <div className="step-content">
-            <h2>{t('upload.step2')}: Configure</h2>
+            <h2>{t('upload.step2')}: Info Kuis</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '1.5rem' }}>Isi judul, deskripsi, dan kategori kuis. Pertanyaan akan diambil otomatis dari file .txt yang diunggah.</p>
             <div className="config-form">
               <div className="form-field-dark">
-                <label>Quiz Title</label>
+                <label>Quiz Title (ID / Main)</label>
                 <input type="text" className="input-glass" value={title} onChange={e => setTitle(e.target.value)} placeholder={t('upload.quizTitle')} maxLength={100} />
               </div>
               <div className="form-field-dark">
-                <label>Description</label>
-                <textarea className="input-glass" rows={3} value={description} onChange={e => setDescription(e.target.value)} placeholder={t('upload.quizDesc')} maxLength={500} />
+                <label>Quiz Title (English Translation)</label>
+                <input type="text" className="input-glass" value={titleEn} onChange={e => setTitleEn(e.target.value)} placeholder="Enter English translation of the title" maxLength={100} />
+              </div>
+              <div className="form-field-dark">
+                <label>Description (ID / Main)</label>
+                <textarea className="input-glass" rows={2} value={description} onChange={e => setDescription(e.target.value)} placeholder={t('upload.quizDesc')} maxLength={500} />
+              </div>
+              <div className="form-field-dark">
+                <label>Description (English Translation)</label>
+                <textarea className="input-glass" rows={2} value={descriptionEn} onChange={e => setDescriptionEn(e.target.value)} placeholder="Enter English translation of the description" maxLength={500} />
               </div>
               <div className="form-field-dark">
                 <label>{t('upload.categoryTags')}</label>
@@ -246,7 +291,7 @@ const Upload = () => {
             <div className="step-actions">
               <button className="btn btn-secondary" onClick={() => setStep(1)}>← {t('upload.back')}</button>
               <button className="btn btn-primary" onClick={handleUploadAndGenerate} disabled={loading || !title.trim()}>
-                {loading ? t('upload.processing') : t('upload.uploadAndGenerate')}
+                {loading ? '⏳ Memproses file...' : '📋 Parse Pertanyaan dari File'}
               </button>
             </div>
           </div>
@@ -256,7 +301,7 @@ const Upload = () => {
           <div className="step-content">
             <div className="step-header-row">
               <h2>{t('upload.step3')}: Edit Questions</h2>
-              <button className="btn btn-outline btn-sm" onClick={handleAutoGenerate} disabled={loading}>🤖 {loading ? '...' : t('upload.autoGenerate')}</button>
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>✏️ Periksa dan edit pertanyaan sebelum dipublikasi</span>
             </div>
 
             <div className="questions-editor">
@@ -266,18 +311,25 @@ const Upload = () => {
                     <span className="q-num">Q{idx + 1}</span>
                     <button className="btn btn-danger btn-sm" onClick={() => deleteQuestion(idx)}>{t('upload.deleteQuestion')}</button>
                   </div>
-                  <input className="input-glass q-input" placeholder={t('upload.questionText')} value={q.question_text} onChange={e => updateQuestion(idx, 'question_text', e.target.value)} />
-                  <div className="options-editor">
-                    {['A', 'B', 'C', 'D'].map(key => (
-                      <div key={key} className="option-edit-row">
-                        <label className={`correct-radio ${q.correct_option === key ? 'is-correct' : ''}`}>
-                          <input type="radio" name={`correct_${idx}`} checked={q.correct_option === key} onChange={() => updateQuestion(idx, 'correct_option', key)} />
-                          {key}
-                        </label>
-                        <input className="input-glass q-input" placeholder={`Option ${key}`} value={q[`option_${key.toLowerCase()}`]} onChange={e => updateQuestion(idx, `option_${key.toLowerCase()}`, e.target.value)} />
-                      </div>
-                    ))}
-                  </div>
+                   <input className="input-glass q-input" placeholder="Question Text (ID / Main)" value={q.question_text} onChange={e => updateQuestion(idx, 'question_text', e.target.value)} />
+                   <input className="input-glass q-input" placeholder="Question Text (English Translation)" value={q.question_text_en || ''} onChange={e => updateQuestion(idx, 'question_text_en', e.target.value)} style={{ marginTop: '0.5rem' }} />
+                   
+                   <div className="options-editor" style={{ marginTop: '1.25rem' }}>
+                     {['A', 'B', 'C', 'D'].map(key => (
+                       <div key={key} className="option-edit-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem', width: '100%' }}>
+                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                           <label className={`correct-radio ${q.correct_option === key ? 'is-correct' : ''}`} style={{ minWidth: '40px' }}>
+                             <input type="radio" name={`correct_${idx}`} checked={q.correct_option === key} onChange={() => updateQuestion(idx, 'correct_option', key)} />
+                             {key}
+                           </label>
+                           <input className="input-glass q-input" placeholder={`Option ${key} (ID / Main)`} value={q[`option_${key.toLowerCase()}`]} onChange={e => updateQuestion(idx, `option_${key.toLowerCase()}`, e.target.value)} style={{ flex: 1 }} />
+                         </div>
+                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', paddingLeft: '3.5rem' }}>
+                           <input className="input-glass q-input" placeholder={`Option ${key} (English Translation)`} value={q[`option_${key.toLowerCase()}_en`] || ''} onChange={e => updateQuestion(idx, `option_${key.toLowerCase()}_en`, e.target.value)} style={{ flex: 1 }} />
+                         </div>
+                       </div>
+                     ))}
+                   </div>
                 </div>
               ))}
               <button className="btn btn-outline add-q-btn" onClick={addQuestion}>+ {t('upload.addQuestion')}</button>

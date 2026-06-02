@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import './Leaderboard.css';
@@ -33,6 +33,7 @@ const Leaderboard = () => {
 
   return (
     <div className="leaderboard-container container">
+      <Link to="/" className="back-btn">← {t('common.goBack')}</Link>
       <div className="leaderboard-header">
         <h1>{t('leaderboard.title')}</h1>
         <select className="select-glass quiz-filter" value={selectedQuiz} onChange={e => setSelectedQuiz(e.target.value)}>

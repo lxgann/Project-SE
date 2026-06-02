@@ -11,6 +11,7 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const [isMuted, setIsMuted] = useState(localStorage.getItem('gameguessr_muted') === 'true');
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -19,6 +20,21 @@ const Header = () => {
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
+
+  useEffect(() => {
+    const syncMute = () => {
+      setIsMuted(localStorage.getItem('gameguessr_muted') === 'true');
+    };
+    window.addEventListener('mute_toggle', syncMute);
+    return () => window.removeEventListener('mute_toggle', syncMute);
+  }, []);
+
+  const toggleMute = () => {
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+    localStorage.setItem('gameguessr_muted', newMuted);
+    window.dispatchEvent(new Event('mute_toggle'));
+  };
 
   const handleLogout = () => {
     logout();
@@ -43,7 +59,11 @@ const Header = () => {
           )}
 
           <button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'id' : 'en')} title={t('nav.language')}>
-            {lang === 'en' ? '🇬🇧' : '🇮🇩'}
+            🌐 {lang.toUpperCase()}
+          </button>
+
+          <button className="lang-toggle audio-toggle" onClick={toggleMute} title="Toggle Audio" style={{ minWidth: '82px' }}>
+            {isMuted ? '🔇 Mute' : '🔊 Sound'}
           </button>
 
           {isLoggedIn ? (

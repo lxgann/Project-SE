@@ -7,19 +7,20 @@ import './Home.css';
 const API = 'http://localhost:5000/api';
 
 const Home = () => {
-  const { isLoggedIn, token } = useAuth();
-  const { t } = useLanguage();
+  const { isLoggedIn, token, isUploader } = useAuth();
+  const { t, lang } = useLanguage();
   const [quizzes, setQuizzes] = useState([]);
   const [topPlayers, setTopPlayers] = useState([]);
   const [history, setHistory] = useState([]);
   const [activeTab, setActiveTab] = useState('quizzes');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [qRes, lRes] = await Promise.all([
-          fetch(`${API}/quizzes`),
+          fetch(`${API}/quizzes?lang=${lang}`),
           fetch(`${API}/quizzes/leaderboard/global`)
         ]);
         const qData = await qRes.json();
@@ -36,9 +37,17 @@ const Home = () => {
       finally { setLoading(false); }
     };
     fetchData();
-  }, [token]);
+  }, [token, lang]);
 
   const dailyQuiz = quizzes.length > 0 ? quizzes[new Date().getDate() % quizzes.length] : null;
+
+  // Extract unique categories
+  const categories = ['All', ...new Set(quizzes.flatMap(q => q.category_tags ? q.category_tags.split(',').map(t => t.trim()) : []))];
+
+  // Filter quizzes by category
+  const filteredQuizzes = selectedCategory === 'All'
+    ? quizzes
+    : quizzes.filter(q => q.category_tags && q.category_tags.split(',').map(t => t.trim()).includes(selectedCategory));
 
   return (
     <div className="home-container container">
@@ -51,7 +60,9 @@ const Home = () => {
         <div className="hero-actions">
           <Link to={dailyQuiz ? `/play?quizId=${dailyQuiz.id}` : '/play'} className="btn btn-primary action-btn">▶ {t('home.playNow')}</Link>
           <Link to="/leaderboard" className="btn btn-glass action-btn">🏆 {t('home.leaderboard')}</Link>
-          <Link to="/upload" className="btn btn-glass action-btn">📷 {t('home.uploadImage')}</Link>
+          {isUploader && (
+            <Link to="/upload" className="btn btn-glass action-btn">📷 {t('home.uploadImage')}</Link>
+          )}
         </div>
       </section>
 
@@ -73,7 +84,7 @@ const Home = () => {
                   </div>
                   <div className="daily-body">
                     <div className="daily-image">
-                      <img src={`https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=400&q=80`} alt="Daily" />
+                      <img src="/images/games/elden-ring.jpg" alt="Daily" />
                     </div>
                     <div className="daily-info">
                       <h3>{t('home.todaysQuiz')}</h3>
@@ -83,17 +94,91 @@ const Home = () => {
                   </div>
                 </div>
               )}
-              <div className="quiz-list">
-                {loading ? <p className="text-muted">{t('home.loading')}</p> : quizzes.length === 0 ? <p className="text-muted">{t('home.noQuizzes')}</p> : quizzes.map(quiz => (
-                  <div key={quiz.id} className="quiz-item">
-                    <div className="quiz-item-info">
-                      <span className="quiz-item-title">{quiz.title}</span>
-                      <span className="quiz-item-meta">{quiz.description || ''} • {quiz.question_count} {t('home.questions')}</span>
-                      {quiz.category_tags && <div className="quiz-tags">{quiz.category_tags.split(',').map(tag => <span key={tag} className="tag">{tag.trim()}</span>)}</div>}
-                    </div>
-                    <Link to={`/play?quizId=${quiz.id}`} className="btn btn-primary btn-sm">{t('home.play')}</Link>
-                  </div>
-                ))}
+
+              {/* Category Filter Pills */}
+              {!loading && quizzes.length > 0 && (
+                <div className="category-pills">
+                  {categories.map(cat => (
+                    <button
+                      key={cat}
+                      className={`category-pill ${selectedCategory === cat ? 'active' : ''}`}
+                      onClick={() => setSelectedCategory(cat)}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <div className="quiz-grid">
+                {loading ? (
+                  <p className="text-muted">{t('home.loading')}</p>
+                ) : filteredQuizzes.length === 0 ? (
+                  <p className="text-muted">{t('home.noQuizzes')}</p>
+                ) : (
+                  filteredQuizzes.map(quiz => {
+                    const cleanTitle = quiz.title.toLowerCase();
+                    let coverImg = '/images/games/minecraft.jpg'; // default fallback
+
+                    if (cleanTitle.includes('minecraft')) {
+                      coverImg = '/images/games/minecraft.jpg';
+                    } else if (cleanTitle.includes('cyberpunk')) {
+                      coverImg = '/images/games/cyberpunk-2077.jpg';
+                    } else if (cleanTitle.includes('elden')) {
+                      coverImg = '/images/games/elden-ring.jpg';
+                    } else if (cleanTitle.includes('gta') || cleanTitle.includes('grand theft auto')) {
+                      coverImg = '/images/games/gta-v.png';
+                    } else if (cleanTitle.includes('hollow')) {
+                      coverImg = '/images/games/hollow-knight.png';
+                    } else if (cleanTitle.includes('red dead') || cleanTitle.includes('rdr')) {
+                      coverImg = '/images/games/rdr2.png';
+                    } else if (cleanTitle.includes('stardew')) {
+                      coverImg = '/images/games/stardew-valley.png';
+                    } else if (cleanTitle.includes('mario')) {
+                      coverImg = '/images/games/super-mario.jpg';
+                    } else if (cleanTitle.includes('witcher')) {
+                      coverImg = '/images/games/witcher-3.png';
+                    } else if (cleanTitle.includes('zelda')) {
+                      coverImg = '/images/games/zelda-botw.png';
+                    } else if (cleanTitle.includes('valorant')) {
+                      coverImg = '/images/games/valorant.jpg';
+                    } else if (cleanTitle.includes('mobile legends') || cleanTitle.includes('ml')) {
+                      coverImg = '/images/games/mobile-legends.jpg';
+                    } else if (cleanTitle.includes('genshin')) {
+                      coverImg = '/images/games/genshin-impact.jpg';
+                    } else if (cleanTitle.includes('resident evil') || cleanTitle.includes('re4')) {
+                      coverImg = '/images/games/resident-evil-4.jpg';
+                    }
+
+                    return (
+                      <div key={quiz.id} className="quiz-card-wrapper glass-panel">
+                        <div className="quiz-card-banner">
+                          <img src={coverImg} alt={quiz.title} className="quiz-banner-img" />
+                          <div className="quiz-banner-overlay"></div>
+                          {quiz.question_count && (
+                            <span className="quiz-card-qcount">
+                              🎮 {quiz.question_count} {t('home.questions')}
+                            </span>
+                          )}
+                        </div>
+                        <div className="quiz-card-content">
+                          <h3 className="quiz-card-title">{quiz.title}</h3>
+                          <p className="quiz-card-desc">{quiz.description || 'Mainkan dan uji wawasan gaming-mu sekarang!'}</p>
+                          {quiz.category_tags && (
+                            <div className="quiz-card-tags">
+                              {quiz.category_tags.split(',').map(tag => (
+                                <span key={tag} className="tag">{tag.trim()}</span>
+                              ))}
+                            </div>
+                          )}
+                          <Link to={`/play?quizId=${quiz.id}`} className="btn btn-primary quiz-card-btn">
+                            ▶ {t('home.play')}
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </>
           )}
