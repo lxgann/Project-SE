@@ -1,0 +1,34 @@
+Question: Siapakah nama Archon Geo yang juga dikenal sebagai Morax dan menjalani kehidupan rahasia sebagai konsultan di Wangsheng Funeral Parlor?
+A: Zhongli
+B: Venti
+C: Raiden Shogun
+D: Neuvillette
+Answer: A
+
+Question: Di wilayah/negara manakah Traveler memulai awal mula petualangan pertamanya di benua Teyvat dan bertemu dengan Amber?
+A: Liyue
+B: Mondstadt
+C: Inazuma
+D: Sumeru
+Answer: B
+
+Question: Siapa nama maskot pendamping setia Traveler yang seringkali bercanda disebut sebagai Makanan Darurat (Emergency Food)?
+A: Paimon
+B: Amber
+C: Klee
+D: Furina
+Answer: A
+
+Question: Reaksi elemen (Elemental Reaction) apa yang dihasilkan ketika menggabungkan elemen Dendro (tanaman/kayu) dengan elemen Electro (listrik)?
+A: Vaporize
+B: Quicken (Catalyze)
+C: Melt
+D: Freeze
+Answer: B
+
+Question: Siapakah nama Archon Pyro (Dewa Api) pelindung wilayah perang Natlan yang memiliki wujud bertarung berambut api?
+A: Mavuika
+B: Murata
+C: Bennett
+D: Diluc
+Answer: A

@@ -83,6 +83,67 @@ const extractText = async (filePath, ext) => {
   throw new Error('Unsupported file format. Please upload TXT, PDF, DOCX, or JSON files.');
 };
 
+// Parse structured text files
+const parseStructuredText = (text) => {
+  const lines = text.split('\n');
+  const questions = [];
+  let currentQ = null;
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line) continue;
+
+    // Detect question start (supports Question:, Q:, Pertanyaan:)
+    // We make sure it doesn't match Question_EN
+    if (line.match(/^(Question|Q|Pertanyaan)\s*:/i) && !line.match(/_(EN|ENG)/i)) {
+      if (currentQ && currentQ.question_text) {
+        questions.push(currentQ);
+      }
+      currentQ = {
+        question_text: line.replace(/^(Question|Q|Pertanyaan)\s*:\s*/i, '').trim(),
+        question_text_en: '',
+        option_a: '',
+        option_a_en: '',
+        option_b: '',
+        option_b_en: '',
+        option_c: '',
+        option_c_en: '',
+        option_d: '',
+        option_d_en: '',
+        correct_option: 'A'
+      };
+    } else if (currentQ) {
+      if (line.match(/^(Question_EN|Q_EN|Pertanyaan_EN)\s*:/i)) {
+        currentQ.question_text_en = line.replace(/^(Question_EN|Q_EN|Pertanyaan_EN)\s*:\s*/i, '').trim();
+      } else if (line.match(/^A_EN\s*:/i)) {
+        currentQ.option_a_en = line.replace(/^A_EN\s*:\s*/i, '').trim();
+      } else if (line.match(/^A\s*:/i)) {
+        currentQ.option_a = line.replace(/^A\s*:\s*/i, '').trim();
+      } else if (line.match(/^B_EN\s*:/i)) {
+        currentQ.option_b_en = line.replace(/^B_EN\s*:\s*/i, '').trim();
+      } else if (line.match(/^B\s*:/i)) {
+        currentQ.option_b = line.replace(/^B\s*:\s*/i, '').trim();
+      } else if (line.match(/^C_EN\s*:/i)) {
+        currentQ.option_c_en = line.replace(/^C_EN\s*:\s*/i, '').trim();
+      } else if (line.match(/^C\s*:/i)) {
+        currentQ.option_c = line.replace(/^C\s*:\s*/i, '').trim();
+      } else if (line.match(/^D_EN\s*:/i)) {
+        currentQ.option_d_en = line.replace(/^D_EN\s*:\s*/i, '').trim();
+      } else if (line.match(/^D\s*:/i)) {
+        currentQ.option_d = line.replace(/^D\s*:\s*/i, '').trim();
+      } else if (line.match(/^(Answer|Kunci|Ans|Jawaban)\s*:/i)) {
+        currentQ.correct_option = line.replace(/^(Answer|Kunci|Ans|Jawaban)\s*:\s*/i, '').trim().toUpperCase().charAt(0);
+      } else if (line.match(/^(Image|Gambar|Img)\s*:/i)) {
+        currentQ.image_url = line.replace(/^(Image|Gambar|Img)\s*:\s*/i, '').trim();
+      }
+    }
+  }
+  if (currentQ && currentQ.question_text) {
+    questions.push(currentQ);
+  }
+  return questions;
+};
+
 // Auto-generate questions using Groq API
 const generateQuestionsWithAI = async (text, numQuestions = 5) => {
   const apiKey = process.env.GROQ_API_KEY;
@@ -195,8 +256,13 @@ router.post('/document', requireUploader, upload.single('document'), async (req,
     if (extracted.type === 'json') {
       questions = Array.isArray(extracted.data) ? extracted.data : (extracted.data.questions || []);
     } else {
-      const numQuestions = parseInt(req.body.num_questions) || 5;
-      questions = await generateQuestionsWithAI(extracted.data, numQuestions);
+      const parsedStructured = parseStructuredText(extracted.data);
+      if (parsedStructured.length > 0) {
+        questions = parsedStructured;
+      } else {
+        const numQuestions = parseInt(req.body.num_questions) || 5;
+        questions = await generateQuestionsWithAI(extracted.data, numQuestions);
+      }
     }
 
     // Cleanup uploaded file
@@ -233,7 +299,7 @@ router.post('/image', requireUploader, imageUpload.single('image'), (req, res) =
 
 // POST /api/upload/create-quiz - Create and publish quiz
 router.post('/create-quiz', requireUploader, async (req, res) => {
-  const { title, description, category_tags, time_limit, questions } = req.body;
+  const { title, title_en, description, description_en, category_tags, time_limit, questions } = req.body;
   const userId = req.user.id;
 
   if (!title || !questions || questions.length === 0) {
@@ -250,15 +316,29 @@ router.post('/create-quiz', requireUploader, async (req, res) => {
       await conn.beginTransaction();
 
       const [quizResult] = await conn.query(
-        `INSERT INTO quizzes (title, description, category_tags, time_limit, created_by, status) VALUES (?, ?, ?, ?, ?, 'published')`,
-        [title, description || null, category_tags || null, time_limit || 30, userId]
+        `INSERT INTO quizzes (title, title_en, description, description_en, category_tags, time_limit, created_by, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'published')`,
+        [title, title_en || null, description || null, description_en || null, category_tags || null, time_limit || 30, userId]
       );
       const quizId = quizResult.insertId;
 
       for (const q of questions) {
         await conn.query(
-          `INSERT INTO questions (quiz_id, question_text, image_url, option_a, option_b, option_c, option_d, correct_option) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-          [quizId, q.question_text, q.image_url || null, q.option_a, q.option_b, q.option_c, q.option_d, q.correct_option || 'A']
+          `INSERT INTO questions (quiz_id, question_text, question_text_en, image_url, option_a, option_a_en, option_b, option_b_en, option_c, option_c_en, option_d, option_d_en, correct_option) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [
+            quizId,
+            q.question_text,
+            q.question_text_en || null,
+            q.image_url || null,
+            q.option_a,
+            q.option_a_en || null,
+            q.option_b,
+            q.option_b_en || null,
+            q.option_c,
+            q.option_c_en || null,
+            q.option_d,
+            q.option_d_en || null,
+            q.correct_option || 'A'
+          ]
         );
       }
 

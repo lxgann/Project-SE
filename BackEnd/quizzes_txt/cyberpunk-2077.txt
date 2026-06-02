@@ -1,0 +1,34 @@
+Question: Di kota megalopolis futuristik manakah petualangan V dan Johnny Silverhand berlangsung?
+A: Los Santos
+B: Night City
+C: Liberty City
+D: Raccoon City
+Answer: B
+
+Question: Aktor kawakan siapakah yang mengisi suara sekaligus model penampilan dari karakter Johnny Silverhand?
+A: Keanu Reeves
+B: Brad Pitt
+C: Robert Downey Jr.
+D: Johnny Depp
+Answer: A
+
+Question: Apa nama implan biochip legendaris berisi kesadaran Johnny Silverhand yang dicari V dan tertanam di kepalanya?
+A: The Relic
+B: Cyberdeck
+C: Sandevistan
+D: Mantis Blades
+Answer: A
+
+Question: Megakorporasi raksasa asal Jepang manakah yang mendominasi Night City dan menjadi musuh utama dalam alur cerita Cyberpunk 2077?
+A: Militech
+B: Arasaka
+C: Kang Tao
+D: Weyland
+Answer: B
+
+Question: Apa nama bar legendaris di distrik Watson yang menjadi tempat berkumpulnya para tentara bayaran (mercenary) kelas atas di Night City?
+A: Afterlife
+B: Lizzy's Bar
+C: The Coyote Cojo
+D: Totentanz
+Answer: A

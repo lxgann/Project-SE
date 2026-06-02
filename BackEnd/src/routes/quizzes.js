@@ -6,6 +6,7 @@ const { requireAuth } = require('../middleware/auth');
 // GET /api/quizzes - Browse all published quizzes
 router.get('/', async (req, res) => {
   try {
+    const lang = req.query.lang || 'id';
     const [quizzes] = await pool.query(
       `SELECT q.*, u.username as creator_name, u.display_name as creator_display,
        (SELECT COUNT(*) FROM questions WHERE quiz_id = q.id) as question_count
@@ -14,7 +15,19 @@ router.get('/', async (req, res) => {
        WHERE q.status = 'published'
        ORDER BY q.created_at DESC`
     );
-    res.json({ status: 'success', data: quizzes });
+
+    const localizedQuizzes = quizzes.map(q => {
+      if (lang === 'en' && q.title_en) {
+        return {
+          ...q,
+          title: q.title_en,
+          description: q.description_en || q.description
+        };
+      }
+      return q;
+    });
+
+    res.json({ status: 'success', data: localizedQuizzes });
   } catch (err) {
     console.error('Quiz list error:', err);
     res.status(500).json({ status: 'error', error: { code: 'QUIZ_001', message: 'Database error' } });
@@ -89,6 +102,7 @@ router.get('/history/me', requireAuth, async (req, res) => {
 // GET /api/quizzes/:id - Get specific quiz info
 router.get('/:id', async (req, res) => {
   try {
+    const lang = req.query.lang || 'id';
     const [quizzes] = await pool.query(
       `SELECT q.*, u.username as creator_name,
        (SELECT COUNT(*) FROM questions WHERE quiz_id = q.id) as question_count
@@ -100,7 +114,17 @@ router.get('/:id', async (req, res) => {
     if (!quizzes[0]) {
       return res.status(404).json({ status: 'error', error: { code: 'QUIZ_002', message: 'Quiz not found' } });
     }
-    res.json({ status: 'success', data: quizzes[0] });
+
+    let quiz = quizzes[0];
+    if (lang === 'en' && quiz.title_en) {
+      quiz = {
+        ...quiz,
+        title: quiz.title_en,
+        description: quiz.description_en || quiz.description
+      };
+    }
+
+    res.json({ status: 'success', data: quiz });
   } catch (err) {
     res.status(500).json({ status: 'error', error: { code: 'QUIZ_003', message: 'Database error' } });
   }
@@ -109,11 +133,27 @@ router.get('/:id', async (req, res) => {
 // GET /api/quizzes/:id/questions - Get quiz questions
 router.get('/:id/questions', async (req, res) => {
   try {
+    const lang = req.query.lang || 'id';
     const [questions] = await pool.query(
       `SELECT * FROM questions WHERE quiz_id = ? ORDER BY RAND()`,
       [req.params.id]
     );
-    res.json({ status: 'success', data: questions });
+
+    const localizedQuestions = questions.map(q => {
+      if (lang === 'en' && q.question_text_en) {
+        return {
+          ...q,
+          question_text: q.question_text_en,
+          option_a: q.option_a_en || q.option_a,
+          option_b: q.option_b_en || q.option_b,
+          option_c: q.option_c_en || q.option_c,
+          option_d: q.option_d_en || q.option_d
+        };
+      }
+      return q;
+    });
+
+    res.json({ status: 'success', data: localizedQuestions });
   } catch (err) {
     res.status(500).json({ status: 'error', error: { code: 'QUIZ_004', message: 'Database error' } });
   }

@@ -1,0 +1,34 @@
+Question: Agen duelist manakah yang berasal dari Korea Selatan dan memiliki kelincahan meluncur di udara serta memanggil pisau terbang (Blade Storm)?
+A: Jett
+B: Sage
+C: Reyna
+D: Phoenix
+Answer: A
+
+Question: Senjata laras panjang (Rifle) termahal manakah yang paling populer karena memiliki damage mematikan satu kali tembak di kepala (one-tap headshot)?
+A: Phantom
+B: Vandal
+C: Spectre
+D: Operator
+Answer: B
+
+Question: Siapakah nama agen Sentinel asal Tiongkok yang memiliki kemampuan untuk menyembuhkan rekan tim serta menghidupkan kembali rekan yang mati?
+A: Cypher
+B: Sage
+C: Killjoy
+D: Chamber
+Answer: B
+
+Question: Siapa nama agen Sentinel asal Jerman dengan kepribadian jenius yang mengandalkan robot peledak Boom Bot serta Turret tembak otomatis?
+A: Raze
+B: Killjoy
+C: Neon
+D: Fade
+Answer: B
+
+Question: Senjata Sniper termahal manakah di game Valorant yang mampu melumpuhkan musuh secara instan dengan satu tembakan di badan (one-shot body shot)?
+A: Marshal
+B: Outlaw
+C: Operator
+D: Sheriff
+Answer: C

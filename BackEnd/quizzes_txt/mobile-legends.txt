@@ -1,0 +1,34 @@
+Question: Hero Assassin manakah yang bertarung dengan sangat lincah memanfaatkan kabel baja untuk bergerak cepat dari dinding ke dinding di Land of Dawn?
+A: Gusion
+B: Fanny
+C: Ling
+D: Lancelot
+Answer: B
+
+Question: Item pertahanan (Defense) manakah yang memiliki kemampuan pasif unik menghidupkan kembali hero setelah mati dengan sedikit HP?
+A: Athena's Shield
+B: Antique Cuirass
+C: Immortality
+D: Guardian Helmet
+Answer: C
+
+Question: Monster hutan (jungle monster) terkuat manakah yang jika berhasil dikalahkan akan membantu tim menyerang turret musuh?
+A: Lord
+B: Turtle
+C: Lithowanderer
+D: Scavenger Crab
+Answer: A
+
+Question: Siapa nama Hero Mage pawung legendaris asal Jepang di Mobile Legends yang sangat lincah berpindah-pindah posisi menggunakan payungnya?
+A: Kagura
+B: Odette
+C: Aurora
+D: Alice
+Answer: A
+
+Question: Apa nama spell pertempuran (battle spell) wajib yang harus dibawa oleh seorang Jungler agar bisa membeli item khusus jungler dan mengamankan Lord?
+A: Flicker
+B: Execute
+C: Retribution
+D: Purify
+Answer: C

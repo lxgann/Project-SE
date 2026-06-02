@@ -1,0 +1,34 @@
+Question: Di kerajaan bawah tanah kuno manakah petualangan Hollow Knight berlangsung?
+A: Lordran
+B: Hallownest
+C: Hyrule
+D: Zebes
+Answer: B
+
+Question: Apa nama mata uang utama yang digunakan di dalam game Hollow Knight?
+A: Gold
+B: Geo
+C: Souls
+D: Rupee
+Answer: B
+
+Question: Siapakah bos wanita lincah pelindung reruntuhan kerajaan kuno yang menggunakan jarum dan benang sutra sebagai senjatanya?
+A: Hornet
+B: Sly
+C: Zote
+D: Quirrel
+Answer: A
+
+Question: Apa nama skill pergerakan udara horizontal pertama yang didapatkan pemain di Greenpath?
+A: Monarch Wings
+B: Mothwing Cloak
+C: Mantis Claw
+D: Crystal Heart
+Answer: B
+
+Question: Di area bawah tanah gelap manakah letak sarang kawanan laba-laba dan tempat peristirahatan salah satu Dreamer, Herrah the Beast?
+A: Deepnest
+B: Crystal Peak
+C: Ancient Basin
+D: Royal Waterways
+Answer: A

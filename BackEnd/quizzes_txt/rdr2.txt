@@ -1,0 +1,34 @@
+Question: Siapakah nama karakter utama protagonis yang kita mainkan di Red Dead Redemption 2?
+A: John Marston
+B: Arthur Morgan
+C: Dutch van der Linde
+D: Micah Bell
+Answer: B
+
+Question: Apa nama geng kriminal legendaris tempat Arthur Morgan bernaung?
+A: O'Driscoll Gang
+B: Van der Linde Gang
+C: Grove Street Families
+D: Pinkerton Agency
+Answer: B
+
+Question: Siapakah nama anak laki-laki kecil dari John Marston dan Abigail yang diculik dan harus diselamatkan dari Saint Denis?
+A: Jack Marston
+B: Sean MacGuire
+C: Lenny Summers
+D: Kieran Duffy
+Answer: A
+
+Question: Kota industri modern berpolusi tinggi manakah yang menjadi kota terbesar di seluruh peta wilayah RDR2?
+A: Valentine
+B: Saint Denis
+C: Rhodes
+D: Blackwater
+Answer: B
+
+Question: Siapakah anggota pengkhianat utama di dalam geng Van der Linde yang menjadi dalang kehancuran Arthur Morgan?
+A: Micah Bell
+B: Hosea Matthews
+C: Charles Smith
+D: Bill Williamson
+Answer: A

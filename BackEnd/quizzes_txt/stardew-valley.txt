@@ -1,0 +1,34 @@
+Question: Siapakah nama developer tunggal yang mengembangkan game Stardew Valley secara mandiri?
+A: ConcernedApe (Eric Barone)
+B: Notch
+C: Toby Fox
+D: Scott Cawthon
+Answer: A
+
+Question: Apa nama kota utama tempat perkebunan kakekmu berada di Stardew Valley?
+A: Pelican Town
+B: Zuzu City
+C: Pallet Town
+D: Riverwood
+Answer: A
+
+Question: Siapa nama walikota Pelican Town berkumis dan bertopi cokelat yang sering memintamu mencari celana pendek ungu kesayangannya?
+A: Lewis
+B: Pierre
+C: Clint
+D: Gunther
+Answer: A
+
+Question: Makhluk roh pelindung hutan ramah apa yang tinggal di Community Center dan membantumu merestorasi kota?
+A: Junimos
+B: Dwarves
+C: Shadow Shaman
+D: Krobus
+Answer: A
+
+Question: Di musim apakah tanaman berharga tinggi seperti Pumpkin (Labu), Cranberry, dan Grapes dapat Anda tanam?
+A: Spring (Musim Semi)
+B: Summer (Musim Panas)
+C: Fall (Musim Gugur)
+D: Winter (Musim Dingin)
+Answer: C

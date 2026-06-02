@@ -1,0 +1,34 @@
+Question: Karakter ikonik Mario pertama kali muncul di game arcade klasik tahun 1981 yang mana?
+A: Super Mario Bros
+B: Donkey Kong
+C: Pac-Man
+D: Jumpman
+Answer: B
+
+Question: Siapakah musuh bebuyutan utama Mario yang berkali-kali menculik Princess Peach?
+A: Bowser
+B: Luigi
+C: Wario
+D: Donkey Kong
+Answer: A
+
+Question: Apa nama kerajaan fiktif tempat tinggal jamur Toad dan Princess Peach yang selalu dilindungi oleh Mario?
+A: Mushroom Kingdom
+B: Hyrule
+C: Dream Land
+D: Bowser's Castle
+Answer: A
+
+Question: Item jamur berwarna hijau dengan tulisan '1-Up' memberikan efek apa bagi Mario saat dikonsumsi?
+A: Nyawa Tambahan (Extra Life)
+B: Menjadi Raksasa (Super Size)
+C: Tembakan Api (Fire Ball)
+D: Kebal Sementara (Invincibility)
+Answer: A
+
+Question: Siapa nama dinosaurus kecil berwarna hijau yang menjadi tunggangan setia Mario dan bisa memakan musuh?
+A: Yoshi
+B: Bowser Jr.
+C: Toadette
+D: Wiggler
+Answer: A
