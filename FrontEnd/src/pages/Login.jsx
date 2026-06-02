@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSnackbar } from '../context/SnackbarContext';
@@ -15,6 +15,7 @@ const Login = () => {
   const { t } = useLanguage();
   const { showSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +23,8 @@ const Login = () => {
     try {
       await login(email, password);
       showSnackbar(t('login.loginSuccess'), 'success');
-      navigate('/');
+      const from = location.state?.from || '/';
+      navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally { setLoading(false); }

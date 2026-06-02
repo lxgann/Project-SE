@@ -94,7 +94,7 @@ function App() {
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/play" element={<Play />} />
+                <Route path="/play" element={<ProtectedRoute><Play /></ProtectedRoute>} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
