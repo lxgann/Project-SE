@@ -1,0 +1,34 @@
+Question: Siapakah tiga karakter utama protagonis yang kita mainkan di Grand Theft Auto V?
+A: CJ, Sweet, dan Big Smoke
+B: Michael, Franklin, dan Trevor
+C: Nico, Roman, dan Jacob
+D: Tommy, Ken, dan Lance
+Answer: B
+
+Question: Apa nama kota utama fiktif tempat berlangsungnya alur cerita di GTA V?
+A: Vice City
+B: Liberty City
+C: Los Santos
+D: San Fierro
+Answer: C
+
+Question: Siapakah nama karakter anjing ras Rottweiler milik Franklin Clinton yang bisa diajak berjalan-jalan dan menyerang musuh?
+A: Chop
+B: Lamar
+C: Riley
+D: Buster
+Answer: A
+
+Question: Apa nama perusahaan keamanan militer swasta (PMC) korup dalam game yang memburu ketiga karakter utama kita?
+A: Merryweather Security
+B: Blackwater
+C: Gruppe Sechs
+D: FIB
+Answer: A
+
+Question: Di daerah pedesaan gurun terpencil manakah tempat tinggal awal Trevor Philips sebelum ia pergi ke Los Santos?
+A: Sandy Shores
+B: Paleto Bay
+C: Grapeseed
+D: Mount Chiliad
+Answer: A

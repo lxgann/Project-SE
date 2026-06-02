@@ -1,0 +1,33 @@
+Question: Siapa nama agen rahasia pemerintah Amerika Serikat yang dikirim ke desa terpencil Spanyol untuk menyelamatkan putri Presiden?
+A: Chris Redfield
+B: Leon S. Kennedy
+C: Albert Wesker
+D: Ethan Winters
+Answer: B
+
+Question: Siapakah nama putri Presiden Amerika Serikat yang diculik oleh sekte sesat Los Illuminados dalam Resident Evil 4?
+A: Ashley Graham
+B: Ada Wong
+C: Claire Redfield
+D: Sherry Birkin
+Answer: A
+
+Question: Parasit kuno pengendali pikiran jenis apakah yang menginfeksi penduduk desa (Ganados) dalam cerita Resident Evil 4?
+A: T-Virus
+B: Las Plagas
+C: G-Virus
+D: Uroboros
+Answer: B
+
+Question: Siapakah nama wanita mata-mata bergaun merah yang memegang sampel virus dan diam-diam membantu Leon dari balik bayang-bayang?
+A: Ada Wong
+C: Jill Valentine
+D: Rebecca Chambers
+Answer: A
+
+Question: Senjata penghancur sekali pakai berharga mahal apakah yang sangat ampuh mengalahkan bos tersulit dengan satu kali tembakan?
+A: Shotgun
+B: Rocket Launcher
+C: Magnum
+D: Red9
+Answer: B

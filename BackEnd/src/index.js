@@ -7,7 +7,7 @@ const rateLimit = require('express-rate-limit');
 const path = require('path');
 const { initDb } = require('./config/db');
 
-// Load environment variable
+// Load environment variables
 require('dotenv').config();
 
 const app = express();
@@ -37,7 +37,7 @@ const authLimiter = rateLimit({
 // General rate limiting
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200
+  max: 5000 // Increased from 200 to 5000 for development ease
 });
 
 // Express Middlewares

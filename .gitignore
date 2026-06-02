@@ -1,0 +1,21 @@
+# Ignore environment files
+BackEnd/.env
+FrontEnd/.env
+.env
+
+# Ignore node_modules
+node_modules/
+BackEnd/node_modules/
+FrontEnd/node_modules/
+
+# Ignore build directories
+dist/
+FrontEnd/dist/
+
+# Ignore uploads directory (user uploaded files)
+BackEnd/uploads/
+
+# Ignore database logs and temporary files
+BackEnd/database.sqlite
+*.log
+.DS_Store

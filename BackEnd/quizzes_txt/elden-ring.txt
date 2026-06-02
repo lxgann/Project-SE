@@ -1,0 +1,34 @@
+Question: Siapakah penulis novel fantasi legendaris yang berkolaborasi dengan Hidetaka Miyazaki dalam worldbuilding Elden Ring?
+A: J.K. Rowling
+B: George R. R. Martin
+C: J.R.R. Tolkien
+D: Brandon Sanderson
+Answer: B
+
+Question: Apa nama mata uang utama di game Elden Ring yang digunakan untuk menaikkan level karakter?
+A: Gold
+B: Souls
+C: Runes
+D: Blood Echoes
+Answer: C
+
+Question: Siapakah bos wanita legendaris berkepala merah (Goddess of Rot) yang terkenal dengan ucapan ikonik 'I am Malenia, Blade of Miquella'?
+A: Malenia
+B: Ranni
+C: Marika
+D: Rennala
+Answer: A
+
+Question: Apa nama pohon raksasa bersinar keemasan yang mendominasi pemandangan langit di seluruh wilayah Lands Between?
+A: Yggdrasil
+B: Great Oak
+C: Erdtree
+D: Haligtree
+Answer: C
+
+Question: Siapakah karakter setengah manusia setengah serigala berpedang besar yang merupakan pelayan setia Ranni the Witch?
+A: Blaidd
+B: Maliketh
+C: Radahn
+D: Godfrey
+Answer: A

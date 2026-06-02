@@ -1,0 +1,34 @@
+Question: Siapakah pencipta asli dari game sandbox Minecraft sebelum diakuisisi oleh Microsoft?
+A: Markus Persson (Notch)
+B: Jens Bergensten (Jeb)
+C: Gabe Newell
+D: Steve Jobs
+Answer: A
+
+Question: Apa nama boss terakhir di Minecraft yang bersemayam di dimensi kegelapan kuno?
+A: Wither
+B: Ender Dragon
+C: Warden
+D: Herobrine
+Answer: B
+
+Question: Bahan makanan berkebun apa yang disukai babi di Minecraft untuk menjinakkan dan mengawinkan mereka?
+A: Wheat (Gandum)
+B: Seeds (Biji-bijian)
+C: Carrot (Wortel)
+D: Sugar Cane (Tebu)
+Answer: C
+
+Question: Apa nama sayap legendaris yang dicari di kapal udara The End agar karakter pemain bisa meluncur terbang di langit?
+A: Elytra
+B: Jetpack
+C: Angel Wings
+D: Glider
+Answer: A
+
+Question: Blok mineral mentah berwarna kemerahan apa yang berfungsi memancarkan energi listrik untuk menyalakan sirkuit mekanis?
+A: Redstone Ore
+B: Lapis Lazuli
+C: Obsidian
+D: Glowstone
+Answer: A

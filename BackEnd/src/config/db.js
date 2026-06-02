@@ -13,6 +13,16 @@ const pool = mysql.createPool({
 });
 
 const initDb = async () => {
+  // Ensure the database exists before establishing the pool connection
+  const tempConn = await mysql.createConnection({
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    charset: 'utf8mb4'
+  });
+  await tempConn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || 'gameguessr'}\``);
+  await tempConn.end();
+
   const conn = await pool.getConnection();
   try {
     console.log('Connected to MySQL database');
@@ -32,7 +42,9 @@ const initDb = async () => {
     await conn.query(`CREATE TABLE IF NOT EXISTS quizzes (
       id INT AUTO_INCREMENT PRIMARY KEY,
       title VARCHAR(100) NOT NULL,
+      title_en VARCHAR(100) DEFAULT NULL,
       description VARCHAR(500) DEFAULT NULL,
+      description_en VARCHAR(500) DEFAULT NULL,
       category_tags VARCHAR(255) DEFAULT NULL,
       time_limit INT DEFAULT 30,
       created_by INT,
@@ -45,11 +57,16 @@ const initDb = async () => {
       id INT AUTO_INCREMENT PRIMARY KEY,
       quiz_id INT NOT NULL,
       question_text TEXT NOT NULL,
+      question_text_en TEXT DEFAULT NULL,
       image_url TEXT,
       option_a VARCHAR(500) NOT NULL,
+      option_a_en VARCHAR(500) DEFAULT NULL,
       option_b VARCHAR(500) NOT NULL,
+      option_b_en VARCHAR(500) DEFAULT NULL,
       option_c VARCHAR(500) NOT NULL,
+      option_c_en VARCHAR(500) DEFAULT NULL,
       option_d VARCHAR(500) NOT NULL,
+      option_d_en VARCHAR(500) DEFAULT NULL,
       correct_option CHAR(1) NOT NULL,
       FOREIGN KEY(quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);

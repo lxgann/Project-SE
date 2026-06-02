@@ -1,0 +1,34 @@
+Question: Siapakah nama pemburu monster (Witcher) legendaris yang menjadi karakter utama di game ini?
+A: Geralt of Rivia
+B: Yennefer of Vengerberg
+C: Ciri of Cintra
+D: Vesemir
+Answer: A
+
+Question: Apa nama kastil/sekolah pelatihan Witcher tempat Geralt dibesarkan dan dididik?
+A: Kaer Morhen
+B: Novigrad
+C: Wyzima
+D: Skellige
+Answer: A
+
+Question: Apa nama pasukan ksatria hantu gaib dari dimensi es lain yang memburu anak angkat Geralt, Ciri, sepanjang cerita?
+A: The Wild Hunt
+B: Nilfgaard Empire
+C: Scoia'tael
+D: Order of the Flaming Rose
+Answer: A
+
+Question: Siapakah penyihir wanita berambut hitam legam beraroma lilac dan gooseberry yang merupakan cinta sejati Geralt?
+A: Yennefer of Vengerberg
+B: Triss Merigold
+C: Keira Metz
+D: Philippa Eilhart
+Answer: A
+
+Question: Mantra sihir Witcher (Sign) jenis apakah yang digunakan Geralt untuk menghasilkan semburan api pembakar musuh?
+A: Igni
+B: Aard
+C: Quen
+D: Axii
+Answer: A
