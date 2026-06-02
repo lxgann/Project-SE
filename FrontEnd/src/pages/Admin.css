@@ -1,17 +1,136 @@
-.admin-container { padding-top: 2rem; padding-bottom: 3rem; animation: slideUp 0.4s; }
-.admin-container h1 { font-size: 1.8rem; margin-bottom: 1.5rem; }
-.admin-panel { padding: 0; overflow: hidden; }
-.admin-panel th { padding: 1rem 1.2rem; background: rgba(255,255,255,0.02); }
-.admin-panel td { padding: 0.8rem 1.2rem; }
+.admin-container { 
+  padding-top: 2.5rem; 
+  padding-bottom: 4rem; 
+  animation: slideUp 0.45s ease-out; 
+}
 
-.reports-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 2rem; }
-.report-card { text-align: center; padding: 2rem 1rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); }
-.report-value { display: block; font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.3rem; }
-.report-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.admin-container h1 { 
+  font-size: 2.2rem; 
+  font-weight: 800;
+  margin-bottom: 2rem; 
+  background: linear-gradient(to right, #ffffff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
 
-@media (max-width: 768px) {
+.admin-panel { 
+  padding: 0; 
+  overflow: hidden; 
+  border-radius: 24px !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45) !important;
+}
+
+.admin-panel th { 
+  padding: 1.25rem 1.5rem; 
+  background: rgba(255, 255, 255, 0.015); 
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-panel td { 
+  padding: 1.1rem 1.5rem; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Reports / Analytics Grid */
+.reports-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1.5rem; 
+  margin-bottom: 2.5rem;
+}
+
+.report-card { 
+  text-align: center; 
+  padding: 2.2rem 1.5rem; 
+  background: rgba(13, 11, 28, 0.5); 
+  border-radius: 20px; 
+  border: 1px solid rgba(255, 255, 255, 0.06); 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.report-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.12);
+}
+
+/* Make value look outstanding */
+.report-value { 
+  display: block; 
+  font-size: 3rem; 
+  font-weight: 900; 
+  color: var(--accent); 
+  margin-bottom: 0.1rem; 
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Cycle different metric accent colors */
+.reports-grid .report-card:nth-child(2) .report-value {
+  color: var(--primary);
+  text-shadow: 0 0 15px var(--primary-glow);
+}
+
+.reports-grid .report-card:nth-child(3) .report-value {
+  color: var(--success);
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+
+.reports-grid .report-card:nth-child(4) .report-value {
+  color: var(--warning);
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.report-label { 
+  font-size: 0.8rem; 
+  font-weight: 700;
+  color: var(--text-secondary); 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}
+
+/* User Management Actions */
+.admin-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-username {
+  font-weight: 600;
+  color: white;
+}
+
+.admin-email {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 960px) {
   .reports-grid { grid-template-columns: 1fr 1fr; }
 }
+
 @media (max-width: 480px) {
   .reports-grid { grid-template-columns: 1fr; }
+  .admin-container h1 { font-size: 1.8rem; }
+  .admin-panel th, .admin-panel td { padding: 0.75rem 1rem; }
 }

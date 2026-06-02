@@ -35,7 +35,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-page" style={{ flexDirection: 'column', gap: '1.5rem' }}>
+      <Link to="/" className="back-btn" style={{ marginBottom: 0 }}>← {t('common.goBack')}</Link>
       <div className="login-card">
         <div className="login-logo"><img src="/logo.png" alt="GameGuessr" /></div>
         <h2 className="login-title">{t('signup.title')}</h2>

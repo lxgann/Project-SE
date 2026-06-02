@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useSnackbar } from '../context/SnackbarContext';
+import { Link } from 'react-router-dom';
 import './Admin.css';
 
 const API = 'http://localhost:5000/api';
@@ -76,6 +77,7 @@ const Admin = () => {
 
   return (
     <div className="admin-container container">
+      <Link to="/" className="back-btn">← {t('common.goBack')}</Link>
       <h1>{t('admin.title')}</h1>
 
       <div className="tabs">
@@ -94,7 +96,12 @@ const Admin = () => {
                   <tbody>
                     {users.map(u => (
                       <tr key={u.id}>
-                        <td><div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><img src={u.avatar_url} alt="" style={{ width: 28, height: 28, borderRadius: '50%' }} />{u.username}</div></td>
+                        <td>
+                          <div className="admin-user-cell">
+                            <img src={u.avatar_url} alt="" className="admin-avatar" />
+                            <span className="admin-username">{u.username}</span>
+                          </div>
+                        </td>
                         <td>{u.email}</td>
                         <td><span className={`badge badge-${u.role}`}>{u.role}</span></td>
                         <td>{u.is_active ? <span style={{ color: 'var(--success)' }}>● {t('admin.active')}</span> : <span style={{ color: 'var(--error)' }}>● {t('admin.inactive')}</span>}</td>
