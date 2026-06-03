@@ -299,7 +299,7 @@ router.post('/image', requireUploader, imageUpload.single('image'), (req, res) =
 
 // POST /api/upload/create-quiz - Create and publish quiz
 router.post('/create-quiz', requireUploader, async (req, res) => {
-  const { title, title_en, description, description_en, category_tags, time_limit, questions } = req.body;
+  const { title, title_en, description, description_en, category_tags, time_limit, image_url, questions } = req.body;
   const userId = req.user.id;
 
   if (!title || !questions || questions.length === 0) {
@@ -316,8 +316,8 @@ router.post('/create-quiz', requireUploader, async (req, res) => {
       await conn.beginTransaction();
 
       const [quizResult] = await conn.query(
-        `INSERT INTO quizzes (title, title_en, description, description_en, category_tags, time_limit, created_by, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'published')`,
-        [title, title_en || null, description || null, description_en || null, category_tags || null, time_limit || 30, userId]
+        `INSERT INTO quizzes (title, title_en, description, description_en, category_tags, time_limit, image_url, created_by, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published')`,
+        [title, title_en || null, description || null, description_en || null, category_tags || null, time_limit || 30, image_url || null, userId]
       );
       const quizId = quizResult.insertId;
 
