@@ -49,9 +49,16 @@ const initDb = async () => {
       time_limit INT DEFAULT 30,
       created_by INT,
       status ENUM('published','hidden','archived') DEFAULT 'published',
+      image_url VARCHAR(500) DEFAULT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(created_by) REFERENCES users(id) ON DELETE SET NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);
+
+    try {
+      await conn.query(`ALTER TABLE quizzes ADD COLUMN image_url VARCHAR(500) DEFAULT NULL`);
+    } catch (err) {
+      // column already exists, safe to ignore
+    }
 
     await conn.query(`CREATE TABLE IF NOT EXISTS questions (
       id INT AUTO_INCREMENT PRIMARY KEY,
