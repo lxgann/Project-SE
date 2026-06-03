@@ -144,6 +144,7 @@ const Upload = () => {
           description_en: descriptionEn, 
           category_tags: categoryTags,
           time_limit: timePerQuestion, 
+          image_url: gameImageUrl,
           questions: questionsWithImage
         })
       });

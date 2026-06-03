@@ -236,7 +236,7 @@ const Play = () => {
       setTimeLeft(timeLimit);
     } else {
       // Quiz finished
-      const finalScore = score + (!fromTimeout && selectedOption === questions[currentIdx]?.correct_option ? 1000 : 0);
+      const finalScore = score;
       const elapsed = Math.round((Date.now() - startTimeRef.current) / 1000);
       setTotalTime(elapsed);
       setQuizFinished(true);
@@ -338,9 +338,15 @@ const Play = () => {
             <img 
               src={(() => {
                 if (!q.image_url) return 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80';
-                // Convert /uploads/games/<filename> to /images/games/<filename> for local serving
-                if (q.image_url.startsWith('/uploads/games/')) {
-                  return q.image_url.replace('/uploads/games/', '/images/games/');
+                const filename = q.image_url.split('/').pop();
+                const seededImages = [
+                  'minecraft.jpg', 'cyberpunk-2077.jpg', 'elden-ring.jpg', 'gta-v.png', 
+                  'hollow-knight.png', 'rdr2.png', 'stardew-valley.png', 'super-mario.jpg', 
+                  'witcher-3.png', 'zelda-botw.png', 'valorant.jpg', 'mobile-legends.jpg', 
+                  'genshin-impact.jpg', 'resident-evil-4.jpg'
+                ];
+                if (seededImages.includes(filename)) {
+                  return `/images/games/${filename}`;
                 }
                 if (q.image_url.startsWith('/uploads')) {
                   return `http://localhost:5000${q.image_url}`;
