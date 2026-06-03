@@ -5,7 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useSnackbar } from '../context/SnackbarContext';
 import './Play.css';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const SERVER_URL = API.endsWith('/api') ? API.slice(0, -4) : API;
 
 const Play = () => {
   const [questions, setQuestions] = useState([]);
@@ -349,7 +350,7 @@ const Play = () => {
                   return `/images/games/${filename}`;
                 }
                 if (q.image_url.startsWith('/uploads')) {
-                  return `http://localhost:5000${q.image_url}`;
+                  return `${SERVER_URL}${q.image_url}`;
                 }
                 return q.image_url;
               })()}

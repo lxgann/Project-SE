@@ -5,7 +5,7 @@ import { useSnackbar } from '../context/SnackbarContext';
 import { Link } from 'react-router-dom';
 import './Admin.css';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState('users');

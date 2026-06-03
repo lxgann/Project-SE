@@ -5,7 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useSnackbar } from '../context/SnackbarContext';
 import './Upload.css';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const SERVER_URL = API.endsWith('/api') ? API.slice(0, -4) : API;
 
 const Upload = () => {
   const [step, setStep] = useState(1);
@@ -131,7 +132,7 @@ const Upload = () => {
       // Attach image to questions
       const questionsWithImage = questions.map(q => ({
         ...q,
-        image_url: q.image_url || (gameImageUrl ? `http://localhost:5000${gameImageUrl}` : null)
+        image_url: q.image_url || (gameImageUrl ? `${SERVER_URL}${gameImageUrl}` : null)
       }));
 
       const res = await fetch(`${API}/upload/create-quiz`, {

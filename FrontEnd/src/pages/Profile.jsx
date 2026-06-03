@@ -5,7 +5,7 @@ import { useSnackbar } from '../context/SnackbarContext';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const Profile = () => {
   const { user, token, updateProfile } = useAuth();

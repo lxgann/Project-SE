@@ -2,10 +2,11 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'gameguessr',
+  host: process.env.DB_HOST || process.env.MYSQLHOST || 'localhost',
+  user: process.env.DB_USER || process.env.MYSQLUSER || 'root',
+  password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || '',
+  database: process.env.DB_NAME || process.env.MYSQLDATABASE || 'gameguessr',
+  port: parseInt(process.env.DB_PORT || process.env.MYSQLPORT || '3306'),
   waitForConnections: true,
   connectionLimit: 20,
   queueLimit: 0,
@@ -14,14 +15,19 @@ const pool = mysql.createPool({
 
 const initDb = async () => {
   // Ensure the database exists before establishing the pool connection
-  const tempConn = await mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    charset: 'utf8mb4'
-  });
-  await tempConn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || 'gameguessr'}\``);
-  await tempConn.end();
+  try {
+    const tempConn = await mysql.createConnection({
+      host: process.env.DB_HOST || process.env.MYSQLHOST || 'localhost',
+      user: process.env.DB_USER || process.env.MYSQLUSER || 'root',
+      password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || '',
+      port: parseInt(process.env.DB_PORT || process.env.MYSQLPORT || '3306'),
+      charset: 'utf8mb4'
+    });
+    await tempConn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || process.env.MYSQLDATABASE || 'gameguessr'}\``);
+    await tempConn.end();
+  } catch (err) {
+    console.log('Database creation skipped or handled by host provider:', err.message);
+  }
 
   const conn = await pool.getConnection();
   try {

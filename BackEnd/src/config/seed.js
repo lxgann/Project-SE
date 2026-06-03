@@ -4,15 +4,19 @@ const { pool, initDb } = require('./db');
 
 const seed = async () => {
   try {
-    // Ensure the database exists before requesting a connection from the pool
-    const tempConn = await mysql.createConnection({
-      host: process.env.DB_HOST || 'localhost',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '',
-      charset: 'utf8mb4'
-    });
-    await tempConn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || 'gameguessr'}\``);
-    await tempConn.end();
+    try {
+      const tempConn = await mysql.createConnection({
+        host: process.env.DB_HOST || process.env.MYSQLHOST || 'localhost',
+        user: process.env.DB_USER || process.env.MYSQLUSER || 'root',
+        password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || '',
+        port: parseInt(process.env.DB_PORT || process.env.MYSQLPORT || '3306'),
+        charset: 'utf8mb4'
+      });
+      await tempConn.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || process.env.MYSQLDATABASE || 'gameguessr'}\``);
+      await tempConn.end();
+    } catch (err) {
+      console.log('Database creation in seed skipped or handled by host provider:', err.message);
+    }
 
     console.log('Dropping existing database tables to apply new schema...');
     const dropConn = await pool.getConnection();
