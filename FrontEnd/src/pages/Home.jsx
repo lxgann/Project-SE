@@ -117,37 +117,52 @@ const Home = () => {
                   <p className="text-muted">{t('home.noQuizzes')}</p>
                 ) : (
                   filteredQuizzes.map(quiz => {
-                    const cleanTitle = quiz.title.toLowerCase();
                     let coverImg = '/images/games/minecraft.jpg'; // default fallback
 
-                    if (cleanTitle.includes('minecraft')) {
-                      coverImg = '/images/games/minecraft.jpg';
-                    } else if (cleanTitle.includes('cyberpunk')) {
-                      coverImg = '/images/games/cyberpunk-2077.jpg';
-                    } else if (cleanTitle.includes('elden')) {
-                      coverImg = '/images/games/elden-ring.jpg';
-                    } else if (cleanTitle.includes('gta') || cleanTitle.includes('grand theft auto')) {
-                      coverImg = '/images/games/gta-v.png';
-                    } else if (cleanTitle.includes('hollow')) {
-                      coverImg = '/images/games/hollow-knight.png';
-                    } else if (cleanTitle.includes('red dead') || cleanTitle.includes('rdr')) {
-                      coverImg = '/images/games/rdr2.png';
-                    } else if (cleanTitle.includes('stardew')) {
-                      coverImg = '/images/games/stardew-valley.png';
-                    } else if (cleanTitle.includes('mario')) {
-                      coverImg = '/images/games/super-mario.jpg';
-                    } else if (cleanTitle.includes('witcher')) {
-                      coverImg = '/images/games/witcher-3.png';
-                    } else if (cleanTitle.includes('zelda')) {
-                      coverImg = '/images/games/zelda-botw.png';
-                    } else if (cleanTitle.includes('valorant')) {
-                      coverImg = '/images/games/valorant.jpg';
-                    } else if (cleanTitle.includes('mobile legends') || cleanTitle.includes('ml')) {
-                      coverImg = '/images/games/mobile-legends.jpg';
-                    } else if (cleanTitle.includes('genshin')) {
-                      coverImg = '/images/games/genshin-impact.jpg';
-                    } else if (cleanTitle.includes('resident evil') || cleanTitle.includes('re4')) {
-                      coverImg = '/images/games/resident-evil-4.jpg';
+                    if (quiz.image_url) {
+                      const filename = quiz.image_url.split('/').pop();
+                      const seededImages = [
+                        'minecraft.jpg', 'cyberpunk-2077.jpg', 'elden-ring.jpg', 'gta-v.png', 
+                        'hollow-knight.png', 'rdr2.png', 'stardew-valley.png', 'super-mario.jpg', 
+                        'witcher-3.png', 'zelda-botw.png', 'valorant.jpg', 'mobile-legends.jpg', 
+                        'genshin-impact.jpg', 'resident-evil-4.jpg'
+                      ];
+                      if (seededImages.includes(filename)) {
+                        coverImg = `/images/games/${filename}`;
+                      } else {
+                        coverImg = quiz.image_url.startsWith('http') ? quiz.image_url : `http://localhost:5000${quiz.image_url}`;
+                      }
+                    } else {
+                      const cleanTitle = quiz.title.toLowerCase();
+                      if (cleanTitle.includes('minecraft')) {
+                        coverImg = '/images/games/minecraft.jpg';
+                      } else if (cleanTitle.includes('cyberpunk')) {
+                        coverImg = '/images/games/cyberpunk-2077.jpg';
+                      } else if (cleanTitle.includes('elden')) {
+                        coverImg = '/images/games/elden-ring.jpg';
+                      } else if (cleanTitle.includes('gta') || cleanTitle.includes('grand theft auto')) {
+                        coverImg = '/images/games/gta-v.png';
+                      } else if (cleanTitle.includes('hollow')) {
+                        coverImg = '/images/games/hollow-knight.png';
+                      } else if (cleanTitle.includes('red dead') || cleanTitle.includes('rdr')) {
+                        coverImg = '/images/games/rdr2.png';
+                      } else if (cleanTitle.includes('stardew')) {
+                        coverImg = '/images/games/stardew-valley.png';
+                      } else if (cleanTitle.includes('mario')) {
+                        coverImg = '/images/games/super-mario.jpg';
+                      } else if (cleanTitle.includes('witcher')) {
+                        coverImg = '/images/games/witcher-3.png';
+                      } else if (cleanTitle.includes('zelda')) {
+                        coverImg = '/images/games/zelda-botw.png';
+                      } else if (cleanTitle.includes('valorant')) {
+                        coverImg = '/images/games/valorant.jpg';
+                      } else if (cleanTitle.includes('mobile legends') || cleanTitle.includes('ml')) {
+                        coverImg = '/images/games/mobile-legends.jpg';
+                      } else if (cleanTitle.includes('genshin')) {
+                        coverImg = '/images/games/genshin-impact.jpg';
+                      } else if (cleanTitle.includes('resident evil') || cleanTitle.includes('re4')) {
+                        coverImg = '/images/games/resident-evil-4.jpg';
+                      }
                     }
 
                     return (
